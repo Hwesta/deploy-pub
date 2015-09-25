@@ -38,11 +38,17 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     ansible.playbook = "./singlenode.yml"
     ansible.host_key_checking = false
     ansible.extra_vars = {
-      "archivematica_src_dir" => "/vagrant/src",
+      "archivematica_src_dir" => "/srv",
       "archivematica_src_environment_type" => "development",
     }
     #ansible.raw_arguments = ENV['ANSIBLE_ARGS']
     # accept multiple arguments, separated by colons
     ansible.raw_arguments = ENV['ANSIBLE_ARGS'].to_s.split(':')
+    ansible.skip_tags = ["amsrc-pipeline-clonecode", "amsrc-ss-clone"]  # Mounted below
   end
+
+  config.vm.synced_folder "/home/holly/work/artefactual/archivematica", "/srv/archivematica/"
+  config.vm.synced_folder "/home/holly/work/artefactual/archivematica-storage-service", "/srv/archivematica-storage-service/"
+  config.vm.synced_folder "/home/holly/work/artefactual/appraisal-tab", "/srv/appraisal-tab/"
+
 end
