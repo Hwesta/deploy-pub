@@ -2,9 +2,27 @@
 
 # archivematica-src role
 
+# What to install
 archivematica_src_install_devtools: "yes"
+archivematica_src_install_automationtools: "yes"
+# archivematica_src_install_appraisaltab: "yes"
+
+# SS django environment variables
+archivematica_src_ss_env_django_setings_module: "storage_service.settings.local"
+
+# Branches,
 archivematica_src_am_version: "qa/1.x"
 archivematica_src_ss_version: "qa/0.x"
+# archivematica_src_devtools_version: "master"
+# archivematica_src_automationtools_version: "master"
+
+# Reset
+# archivematica_src_reset_mcpdb: "true"
+# archivematica_src_reset_shareddir: "true"
+# archivematica_src_reset_es: "true"
+# archivematica_src_reset_am_all: "true"
+# archivematica_src_reset_ss_db: "true"
+
 archivematica_src_ss_gunicorn: "true"
 archivematica_src_am_dashboard_gunicorn: "true"
 

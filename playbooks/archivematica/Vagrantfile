@@ -37,6 +37,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.provision :ansible do |ansible|
     ansible.playbook = "./singlenode.yml"
     ansible.host_key_checking = false
+    # ansible.verbose = "v"
     ansible.extra_vars = {
       "archivematica_src_dir" => "/srv",
       "archivematica_src_environment_type" => "development",
@@ -45,6 +46,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     # accept multiple arguments, separated by colons
     ansible.raw_arguments = ENV['ANSIBLE_ARGS'].to_s.split(':')
     ansible.skip_tags = ["amsrc-pipeline-clonecode", "amsrc-ss-clone"]  # Mounted below
+    # ansible.tags = ['amsrc-pipeline']
+    # ansible.tags = ['amsrc-ss']
+    # ansible.tags = ['amsrc-pipeline-instcode']
   end
 
   config.vm.synced_folder "/home/holly/work/artefactual/archivematica", "/srv/archivematica/"
